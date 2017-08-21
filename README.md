@@ -18,14 +18,25 @@ To know more about Razorpay payment flow and steps involved, please read up here
 ## Installation
 
 Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
-to your `composer.json` file:
+to your `composer.json` file: Add following lines your composer.json
 
 ```json
-{
-    "require": {
-        "razorpay/omnipay-razorpay": "~2.0"
-    }
-}
+"repositories" : [{
+			"type" : "composer",
+			"url" : "https://packagist.org"
+		},
+		{
+			"type" : "git",
+			"url" : "https://github.com/mkgururani/omnipay-razorpay",
+			"reference": "master"
+		}
+	],
+	"require-all": true,
+	
+	in composer.json file: 
+	"require" : {
+		"razorpay/omnipay-razorpay": "~1.0"
+		}
 ```
 
 And run composer to update your dependencies:
