@@ -45,9 +45,27 @@ And run composer to update your dependencies:
 
 ## Basic Usage
 
-The following gateways are provided by this package:
-
-* Razorpay_Checkout
+The following code is required for razor-pay api communication:
+ $gateway->setKeyID($merchantkey);
+		    $gateway->setKeySecret($merchantSecret);
+		    if ($billing_address != null && sizeof($billingAddress) > 0) {
+		        $country = $billingAddress->country;
+		        $state = $billingAddress->state;
+		        $address = $billingAddress->address;
+		        $city = $billingAddress->city;
+		        $zip = $billingAddress->zip;
+		    } else {
+		        throw new ItemNotFoundException(true, null, 200, 'Billing details are mandatory.');
+		    }
+		    $cards = array('email' => $emailId, 'first_name' => $fname, 'last_name' => $lname, 'country' => $country,
+		        'city' => $city, 'address' => $address, 'state'=> $state, 'zip' => $zip, 'address1' => $address, 'city1' => $city,
+		        'country1' => $country, 'fname'=>$fname, 'lname'=> $lname, 'state1'=>$state, 'zip1' => $zip, 'phone_no' => $phoneNo);
+		    $gateway->setCard($cards);
+		    $token = 'TRN-'.str_random(10);
+		    $gateway->setTransactionId($token);
+		    $gateway->setReturnUrl(<YOUR-URL>);
+		    $gateway->setCancelUrl(<YOUR-URL>);
+		    $gateway->setTestMode(<MODE-OF-YOUR-PAYMENT>);
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
